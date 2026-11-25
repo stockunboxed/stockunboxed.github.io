@@ -1,0 +1,191 @@
+/* ==============================================================================
+   StockUnboxed WCAG 2.2 Level AA & Aspect Ratio Overrides
+   Strict ADA Title III, UK Equality Act, EU EAA, and RPwD Act Compliance
+   ============================================================================== */
+
+[x-cloak], [data-x-cloak] {
+  display: none !important;
+}
+
+/* 1. WCAG 2.4.7 Visible Keyboard Focus Ring */
+*:focus-visible {
+  outline: 2px solid #1D4ED8 !important;
+  outline-offset: 2px !important;
+}
+
+/* 2. Custom Sleek Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #FAF8F5; }
+::-webkit-scrollbar-thumb { background: #9E9890; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #524E4A; }
+
+/* 3. Stitch 3D Stage Floating Keyframes & Isometric Perspective */
+@keyframes floatDeck {
+  0%, 100% {
+    transform: perspective(1200px) rotateY(-10deg) rotateX(6deg) translateY(0px);
+  }
+  50% {
+    transform: perspective(1200px) rotateY(-8deg) rotateX(4deg) translateY(-10px);
+  }
+}
+
+.perspective-stage {
+  perspective: 1200px;
+}
+
+.deck-3d-animated {
+  transform-style: preserve-3d;
+  animation: floatDeck 5.5s ease-in-out infinite;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.deck-3d-animated:hover {
+  animation-play-state: paused;
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg) translateY(-4px) !important;
+}
+
+/* 4. Architectural Grid Background (Blueprint & Warm Glow) */
+.hero-grid-bg {
+  background-color: #FAF8F5;
+  background-image: 
+    radial-gradient(circle at 75% 25%, rgba(217, 119, 6, 0.09) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(153, 27, 27, 0.05) 0%, transparent 50%),
+    linear-gradient(to right, rgba(231, 229, 228, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(231, 229, 228, 0.45) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+}
+
+/* 5. Ticker Flash Animation */
+.ticker-flash {
+  transition: background-color 400ms ease, color 400ms ease;
+}
+
+/* 6. Underline Brush Flourish */
+.brush-gold-underline {
+  position: relative;
+  white-space: nowrap;
+}
+.brush-gold-underline::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  bottom: -4px;
+  width: 104%;
+  height: 6px;
+  background: linear-gradient(90deg, #D97706 0%, #F59E0B 75%, transparent 100%);
+  border-radius: 4px;
+  opacity: 0.85;
+  z-index: -1;
+}
+
+/* 7. Bento Card Hover Lift Physics */
+.bento-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.bento-card:hover {
+  transform: translateY(-4px);
+  border-color: #D97706;
+  box-shadow: 0 12px 24px -8px rgba(28, 25, 23, 0.08);
+}
+
+/* 8. Accessible Borders & Focus States */
+.border-accessible {
+  border-color: #9E9890 !important;
+}
+
+/* 9. WCAG 2.5.8 Touch Target Minimums (44x44px hit area for tagged interactive elements) */
+.touch-target, a.btn-touch {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 4. Google Discover & Zero-CLS Aspect Ratio Locks */
+.hero-discover-thumb {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.broker-logo-box {
+  aspect-ratio: 3 / 1;
+  width: 120px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.avatar-square {
+  aspect-ratio: 1 / 1;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 9999px;
+}
+
+.ad-slot-reserved {
+  background-color: #F5F2EB;
+  border: 1px dashed #9E9890;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 5. Mobile Table Pinned First Column + Reflow at 200% Zoom (WCAG 1.4.10) */
+.financial-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.financial-table th:first-child,
+.financial-table td:first-child {
+  position: sticky;
+  left: 0;
+  background-color: #FFFFFF;
+  z-index: 10;
+  border-right: 2px solid #E7E5E4;
+}
+
+/* 6. WCAG 2.3.3 Reduced Motion Fallbacks */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body.motion-paused * {
+  animation-play-state: paused !important;
+}
+
+/* 7. Screen reader utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only.focus\:not-sr-only:focus {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 99999;
+  width: auto;
+  height: auto;
+  padding: 12px 20px;
+  background-color: #991B1B;
+  color: #FFFFFF;
+  font-weight: 700;
+  border-radius: 4px;
+  outline: 2px solid #1D4ED8;
+  clip: auto;
+}
